@@ -11,6 +11,10 @@ services:
         python manage.py migrate
         python manage.py collectstatic --noinput 
     startCommand: python manage.py runserver 0.0.0.0:8000  
-     
+    envVars:  
+      - key: DJANGO_SECRET_KEY  
+        value: "934nw3r62@!m0^ksgw3#31tntglnr%td+-_b89xpu2@q2zqv=d"  # Replace with your actual secret key
+      - key: DEBUG  
+        value: "true"  
     region: oregon  # Choose the desired region  
     healthCheckPath: /health  # Define a path for health checks
