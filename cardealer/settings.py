@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -66,7 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware',  
+    'allauth.account.middleware.AccountMiddleware',  
 
 ]
 
@@ -95,19 +96,20 @@ WSGI_APPLICATION = 'cardealer.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 import os  
 from pathlib import Path  
+import dj_database_url
 
 # Set BASE_DIR to be a Path object  
 BASE_DIR = Path(__file__).resolve().parent.parent 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),  # Ensure this is a string
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': str(BASE_DIR / 'db.sqlite3'),  # Ensure this is a string
+#     }
+# }
  
 
-# DATABASES = {'default': dj_database_url.config(default='postgres://postgres:######@localhost/cardealer_db')}
+DATABASES = {'default': dj_database_url.config(default='postgresql://car_f7dk_user:KfZe6zPDAR5x89n5jxvRz7VXecVkvJjj@dpg-cs82f6bqf0us738j76u0-a.oregon-postgres.render.com/car_f7dk')}
 
 
 # Password validation
