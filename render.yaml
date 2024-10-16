@@ -1,12 +1,14 @@
-version: 1  
+version: "1"  
 
 services:  
   - type: web  
     name: my-django-app  
-    env: python  
+    runtime: python  
     plan: free  
     buildCommand: |  
       pip install -r requirements.txt  
+      python manage.py migrate  
+      python manage.py loaddata initial_data  # Optional: add if you have initial data to load  
       python manage.py collectstatic --noinput  
     startCommand: python manage.py runserver 0.0.0.0:8000  
     envVars:  
@@ -16,14 +18,5 @@ services:
         sync: false  
       - key: DEBUG  
         value: "false"  
-    prepareCommand: |  
-      python manage.py migrate  
-      python manage.py loaddata initial_data  # Optional: add if you have initial data to load  
-
     region: oregon  # Choose the desired region  
-
-    # Optional: You can want to specify a health check path  
     healthCheckPath: /health  # Define a path for health checks  
-
-    # Define any necessary instance settings  
-    instanceType: standard  # Change as needed
