@@ -2,21 +2,15 @@ version: "1"
 
 services:  
   - type: web  
-    name: my-django-app  
+    name: CarDealerWeb 
     runtime: python  
     plan: free  
-    buildCommand: |  
-      pip install -r requirements.txt  
-      python manage.py migrate  
-      python manage.py loaddata initial_data  # Optional: add if you have initial data to load  
-      python manage.py collectstatic --noinput  
+    buildCommand: |
+        pip install --upgrade pip setuptools wheel
+        pip install -r requirements.txt
+        python manage.py migrate
+        python manage.py collectstatic --noinput 
     startCommand: python manage.py runserver 0.0.0.0:8000  
-    envVars:  
-      - key: DJANGO_SECRET_KEY  
-        sync: false  
-      - key: DATABASE_URL  
-        sync: false  
-      - key: DEBUG  
-        value: "false"  
+     
     region: oregon  # Choose the desired region  
-    healthCheckPath: /health  # Define a path for health checks  
+    healthCheckPath: /health  # Define a path for health checks
