@@ -148,15 +148,48 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+
+# Media settings
+# AWS S3 settings
+from decouple import config
+
+# AWS S3 settings from .env
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+# Other optional settings
+AWS_S3_FILE_OVERWRITE = False  # Prevent overwriting files with the same name
+AWS_DEFAULT_ACL = None  # You can set this if you want more fine-grained control
+
+# Use the S3Boto3Storage backend for media files
+
+# Media files settings
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+
+# Use the S3Boto3Storage backend for media files
+STORAGES = {  
+    'default': {  
+        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',  
+        'OPTIONS': {  
+            'access_key': AWS_ACCESS_KEY_ID,  
+            'secret_key': AWS_SECRET_ACCESS_KEY,  
+        },  
+    },  
+    # Configure a No-Op storage backend for static files  
+    'staticfiles': {  
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',  
+    },  
+}  
+
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'cardealer/static'),
 ]
-
-# Media settings
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 # Messages
 from django.contrib.messages import constants as messages
