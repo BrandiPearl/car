@@ -109,8 +109,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # }
  
 
-DATABASES = {'default': dj_database_url.config(default='postgresql://car_f7dk_user:KfZe6zPDAR5x89n5jxvRz7VXecVkvJjj@dpg-cs82f6bqf0us738j76u0-a.oregon-postgres.render.com/car_f7dk')}
-
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
