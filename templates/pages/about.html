@@ -19,14 +19,14 @@
 </div>
 <!-- Sub Banner end -->
 
-<!-- Service center strat -->
+<!-- About CarDealer start -->
 <div class="about-car content-area-5">
     <div class="container">
         <div class="row">
             <div class="col-xl-5 col-lg-6">
                 <div class="about-car-photo">
                     <div id="carDetailsSlider" class="carousel car-details-sliders slide">
-                        <!-- main slider carousel items -->
+                        <!-- Main slider carousel items -->
                         <div class="carousel-inner">
                             <div class="active item carousel-item" data-slide-number="0">
                                 <img src="{% static 'img/car-1.jpg' %}" class="img-fluid" alt="slider-car">
@@ -38,14 +38,14 @@
                                 <img src="{% static 'img/car-3.jpg' %}" class="img-fluid" alt="slider-car">
                             </div>
                         </div>
-                        <!-- main slider carousel nav controls -->
+                        <!-- Main slider carousel navigation controls -->
                         <ul class="carousel-indicators car-properties list-inline nav nav-justified">
                             <li class="list-inline-item active">
                                 <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#carDetailsSlider">
                                     <img src="{% static 'img/car-1.jpg' %}" class="img-fluid" alt="small-car">
                                 </a>
                             </li>
-							                            <li class="list-inline-item">
+                            <li class="list-inline-item">
                                 <a id="carousel-selector-1" data-slide-to="1" data-target="#carDetailsSlider">
                                     <img src="{% static 'img/car-2.jpg' %}" class="img-fluid" alt="small-car">
                                 </a>
@@ -62,26 +62,24 @@
             <div class="col-xl-7 col-lg-6 align-self-center">
                 <div class="best-used-car">
                     <h3>Welcome to <span>CarDealer Website</span></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has</p>
-                    <p class="mb-0">electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker</p>
+                    <p>We provide a wide selection of quality vehicles and exceptional customer service. Our dealership has been a trusted part of the industry for many years, offering a variety of cars to suit every need.</p>
+                    <p class="mb-0">Our mission is to ensure a seamless experience from browsing our inventory to driving off in your new car. With our dedicated team and state-of-the-art facilities, we are here to help you find the perfect vehicle.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Service center end -->
+<!-- About CarDealer end -->
 
-
-
-<!-- Our team start -->
+<!-- Our Team start -->
 <div class="our-team content-area">
     <div class="container">
         <!-- Main title -->
         <div class="main-title">
-            <h1>Executive <span>Team</span></h1>
-            <p>Team working behind maintaining the quality of our Car Dealership Website.</p>
+            <h1>Meet Our <span>Executive Team</span></h1>
+            <p>Our skilled and experienced team is dedicated to ensuring you have the best car-buying experience possible.</p>
         </div>
-        <!-- Slick slider area start -->
+        <!-- Team slider area start -->
         <div class="slick-slider-area clearfix">
             <div class="row slick-carousel" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
             {% for team in teams %}
@@ -97,17 +95,16 @@
                                 <a href="{{team.google_plus_link}}" target="_blank" class="google-bg"><i class="fa fa-google"></i></a>
                             </div>
                         </div>
-						                        <div class="details">
+                        <div class="details">
                             <h4><a href="team-detail.html">{{team.first_name}} {{team.last_name}}</a></h4>
                             <h5>{{team.designation}}</h5>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-
             </div>
         </div>
     </div>
 </div>
-<!-- Our team end -->
+<!-- Our Team end -->
 {% endblock %}
