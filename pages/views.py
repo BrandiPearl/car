@@ -46,18 +46,23 @@ def contact(request):
         message = request.POST['message']
 
         email_subject = 'You have a new message from CarDealer Website regarding ' + subject
-        message_body = 'Name: ' + name + '. Email: ' + email + '. Phone: ' + phone + '. Message: ' + message
+        message_body = f'Name: {name}. Email: {email}. Phone: {phone}. Message: {message}'
 
-        admin_info = User.objects.get(is_superuser=True)
-        admin_email = admin_info.email
-        send_mail(
+        # Collect all superuser emails
+        admin_emails = User.objects.filter(is_superuser=True).values_list('email', flat=True)
+
+        if admin_emails:
+            send_mail(
                 email_subject,
                 message_body,
-                'rathan.kumar049@gmail.com',
-                [admin_email],
+                'Dream Cars Depot',
+                list(admin_emails),  # Send to all superusers
                 fail_silently=False,
             )
-        messages.success(request, 'Thank you for contacting us. We will get back to you shortly')
+            messages.success(request, 'Thank you for contacting us. We will get back to you shortly')
+        else:
+            messages.error(request, 'Unable to send message. No admin email found.')
+        
         return redirect('contact')
 
     return render(request, 'pages/contact.html')
